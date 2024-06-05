@@ -13,7 +13,7 @@ router.post('/student/signup', studentsignup)
 router.post('/student/signin', studentsignin)
 
 //GET /student/signout
-router.post('/student/signout', studentsignout)
+router.get('/student/signout', studentsignout)
 
 
 module.exports = router;
