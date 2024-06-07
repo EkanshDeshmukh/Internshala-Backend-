@@ -12,7 +12,8 @@ const studentModel = new mongoose.Schema({
     password: {
         type: String,
         select: false,
-        required: true
+        required: true,
+        resetpasswordtoken:0,
     }
 }, { timestamps: true })
 
