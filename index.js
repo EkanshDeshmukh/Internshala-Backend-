@@ -22,6 +22,10 @@ app.use(session({
 }))
 app.use(cookieparser())
 
+//express file-upload
+const fileupload = require('express-fileupload')
+app.use(fileupload())
+
 const ErrorHandler = require('./utils/ErrorHandler')
 const { genetatedErrors } = require('./middlewares/errors')
 
