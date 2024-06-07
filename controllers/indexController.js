@@ -66,3 +66,15 @@ exports.studentforgetmail = catchAsyncErrors(async (req, res, next) => {
         message: "Password has been successfully Changed",
     });
 })
+
+exports.studentresetpassword = catchAsyncErrors(async (req, res, next) => {
+    const student = await Student.findById(req.id).exec()
+    student.password = req.body.password
+    await student.save()
+    sendtoken(student, 201, res)
+})
+
+exports.studentupdate = catchAsyncErrors(async (req, res, next) => {
+    const student = await Student.findByIdAndUpdate(req.params.id, req.body)
+    sendtoken(student, 201, res)
+})
