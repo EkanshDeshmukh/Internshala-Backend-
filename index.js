@@ -31,6 +31,7 @@ const { genetatedErrors } = require('./middlewares/errors')
 
 
 app.use('/', require('./routes/indexRoutes'))
+app.use('/resume',require('./routes/resumeRoutes'))
 
 
 //error handling 
