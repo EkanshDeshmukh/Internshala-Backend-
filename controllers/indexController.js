@@ -103,3 +103,46 @@ exports.studentavatar = catchAsyncErrors(async (req, res, next) => {
         message: "Profile updated!",
     });
 });
+
+
+// ------apply internship ----
+exports.applyinternship = catchAsyncErrors(async (req, res, next) => {
+    const student = await Student.findById(req.id).exec();
+    const internship = await Internship.findById(
+        req.params.internshipid
+    ).exec();
+
+    student.internships.push(internship._id);
+    internship.students.push(student._id);
+    await student.save();
+    await internship.save();
+
+    res.json({ student, internship });
+});
+
+// ------apply job ----
+exports.applyjob = catchAsyncErrors(async (req, res, next) => {
+    const student = await Student.findById(req.id).exec();
+    const job = await Job.findById(req.params.jobid).exec();
+
+    student.jobs.push(job._id);
+    job.students.push(student._id);
+    await student.save();
+    await job.save();
+    res.json({ student, job });
+});
+
+// -----------------------read all jobs---------------
+
+exports.readalljobs = catchAsyncErrors(async (req, res, next) => {
+    const jobs = await Job.find().exec();
+
+    res.status(200).json({ jobs });
+});
+
+// -------------------read all internships ----
+exports.readallinternships = catchAsyncErrors(async (req, res, next) => {
+    const internships = await Internship.find().exec();
+
+    res.status(200).json({ internships });
+});
